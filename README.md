@@ -2,7 +2,7 @@
 title: PDF Compressor
 emoji: 📄
 colorFrom: green
-colorTo: emerald
+colorTo: blue
 sdk: docker
 sdk_version: "0.0.0"
 app_file: Dockerfile
