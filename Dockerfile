@@ -2,7 +2,12 @@ FROM node:20
 
 WORKDIR /app
 
-# Install dependencies
+# Install system dependencies (Ghostscript for PDF compression)
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ghostscript \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Node dependencies
 COPY package.json package-lock.json* ./
 RUN npm install
 
