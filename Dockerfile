@@ -16,6 +16,7 @@ COPY . .
 RUN npm run build
 
 # Hugging Face Spaces expect the app on port 7860
+ENV NODE_ENV=production
 ENV PORT=7860
 EXPOSE 7860
 

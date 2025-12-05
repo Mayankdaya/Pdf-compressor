@@ -349,7 +349,9 @@ app.post('/api/payment/verify', (req, res) => {
 });
 
 // Admin-only endpoint to grant Pro without real payment (guarded by ADMIN_BYPASS_SECRET)
-const adminBypassSecret = process.env.ADMIN_BYPASS_SECRET || null;
+const isProdEnv = process.env.NODE_ENV === 'production';
+const adminBypassSecret =
+  process.env.ADMIN_BYPASS_SECRET || (!isProdEnv ? 'local-dev-bypass-secret-123' : null);
 
 app.post('/api/admin/grant-pro', (req, res) => {
   if (!adminBypassSecret) {
