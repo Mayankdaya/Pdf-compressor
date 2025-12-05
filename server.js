@@ -11,8 +11,12 @@ const { PDFDocument } = require('pdf-lib');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const { fileURLToPath } = require('url');
 const { promisify } = require('util');
 const { execFile } = require('child_process');
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 dotenv.config({ path: '.env.local', override: true });
