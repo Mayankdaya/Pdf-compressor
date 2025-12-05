@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -20,6 +20,29 @@ const getOrCreateUserId = (): string => {
 
 const Pricing: React.FC = () => {
   const [isPurchasing, setIsPurchasing] = useState(false);
+  const [isPro, setIsPro] = useState(false);
+  const [isCheckingStatus, setIsCheckingStatus] = useState(false);
+
+  useEffect(() => {
+    const userId = getOrCreateUserId();
+    const fetchStatus = async () => {
+      try {
+        setIsCheckingStatus(true);
+        const params = new URLSearchParams({ userId });
+        const res = await fetch(`${API_BASE_URL}/api/usage?${params.toString()}`);
+        if (res.ok) {
+          const data = await res.json();
+          setIsPro(Boolean(data.isPro));
+        }
+      } catch {
+        // ignore usage status errors in pricing UI
+      } finally {
+        setIsCheckingStatus(false);
+      }
+    };
+
+    fetchStatus();
+  }, []);
   
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -185,7 +208,21 @@ const Pricing: React.FC = () => {
                 <span className="font-medium text-white">Priority Support</span>
               </li>
             </ul>
-            <Button variant="primary" fullWidth size="lg" onClick={handlePurchase}>Get Lifetime Access</Button>
+            {isPro ? (
+              <Button variant="outline" fullWidth size="lg" disabled>
+                You already have lifetime access
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                fullWidth
+                size="lg"
+                onClick={handlePurchase}
+                disabled={isPurchasing || isCheckingStatus}
+              >
+                {isCheckingStatus ? 'Checking status…' : 'Get Lifetime Access'}
+              </Button>
+            )}
           </div>
 
           {/* Team Plan */}

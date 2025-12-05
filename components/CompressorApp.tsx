@@ -234,6 +234,12 @@ const CompressorApp: React.FC = () => {
       <div className="p-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 rounded-t-2xl"></div>
       
       <div className="p-6 md:p-8">
+        {isPro && (
+          <div className="mb-4 flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 dark:bg-emerald-900/20 dark:border-emerald-700 px-3 py-2 text-xs sm:text-sm text-emerald-800 dark:text-emerald-200">
+            <span className="font-semibold">Pro account active</span>
+            <span className="font-medium text-emerald-700 dark:text-emerald-300">Unlimited compressions</span>
+          </div>
+        )}
         {!file ? (
           // Upload State
           <div 
