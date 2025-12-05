@@ -348,6 +348,34 @@ app.post('/api/payment/verify', (req, res) => {
   }
 });
 
+// Admin-only endpoint to grant Pro without real payment (guarded by ADMIN_BYPASS_SECRET)
+const adminBypassSecret = process.env.ADMIN_BYPASS_SECRET || null;
+
+app.post('/api/admin/grant-pro', (req, res) => {
+  if (!adminBypassSecret) {
+    res.status(500).json({ error: 'ADMIN_BYPASS_NOT_CONFIGURED' });
+    return;
+  }
+
+  const { userId, secret } = req.body || {};
+  const headerSecret = req.headers['x-admin-secret'];
+  const providedSecret = (headerSecret || secret || '').toString();
+
+  if (!userId || !providedSecret) {
+    res.status(400).json({ error: 'MISSING_FIELDS' });
+    return;
+  }
+
+  if (providedSecret !== adminBypassSecret) {
+    res.status(403).json({ error: 'UNAUTHORIZED' });
+    return;
+  }
+
+  const usage = getUserUsage(userId);
+  usage.isPro = true;
+  res.json({ success: true, isPro: true });
+});
+
 // Serve built frontend (Vite dist) in production / Docker environments
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
