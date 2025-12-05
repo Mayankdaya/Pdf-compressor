@@ -210,13 +210,11 @@ app.post('/api/compress', upload.single('file'), async (req, res) => {
       res.status(400).json({ error: 'MISSING_FILE' });
       return;
     }
-    // Free tier limit is tracked per IP; paid pass is tracked per userId
-    const userUsage = getUserUsage(`user:${userId}`);
-    const ipUsage = getUserUsage(`ip:${ip}`);
+    // Free tier limit and Pro status are tracked per userId
+    const usage = getUserUsage(userId);
+    const isPro = usage.isPro;
 
-    const isPro = userUsage.isPro;
-
-    if (!isPro && ipUsage.count >= DAILY_LIMIT) {
+    if (!isPro && usage.count >= DAILY_LIMIT) {
       res.status(403).json({
         error: 'LIMIT_REACHED',
         remaining: 0,
@@ -250,10 +248,10 @@ app.post('/api/compress', upload.single('file'), async (req, res) => {
       }
     }
     if (!isPro) {
-      ipUsage.count += 1;
+      usage.count += 1;
     }
 
-    const remaining = isPro ? null : Math.max(0, DAILY_LIMIT - ipUsage.count);
+    const remaining = isPro ? null : Math.max(0, DAILY_LIMIT - usage.count);
     if (remaining !== null) {
       res.setHeader('X-Remaining-Compressions', String(remaining));
     }
