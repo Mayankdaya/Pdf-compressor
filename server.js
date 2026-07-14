@@ -29,8 +29,15 @@ const upload = multer({
   limits: { fileSize: 20 * 1024 * 1024 }
 });
 
+// In production (Docker/Hugging Face), allow all origins since the frontend
+// is served by the same Express server from the dist/ directory.
+// In development, allow the Vite dev server origins.
+const corsOrigins = process.env.NODE_ENV === 'production'
+  ? true  // Allow all origins (same-origin requests from dist/ are fine)
+  : ['http://localhost:3000', 'http://127.0.0.1:3000'];
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: corsOrigins,
 }));
 
 app.use(express.json());
