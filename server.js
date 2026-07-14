@@ -35,7 +35,73 @@ app.use(cors({
 
 app.use(express.json());
 
-const users = new Map();
+// Persistent storage: JSON file in the data/ directory survives server restarts
+const DATA_DIR = path.join(__dirname, 'data');
+const USERS_FILE = path.join(DATA_DIR, 'users.json');
+
+function ensureDataDir() {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+
+function loadUsers() {
+  ensureDataDir();
+  try {
+    if (fs.existsSync(USERS_FILE)) {
+      const raw = fs.readFileSync(USERS_FILE, 'utf-8');
+      const parsed = JSON.parse(raw);
+      // Convert plain objects back to Map-compatible entries with proper defaults
+      const map = new Map();
+      for (const [key, val] of Object.entries(parsed)) {
+        map.set(key, {
+          date: val.date || getToday(),
+          count: typeof val.count === 'number' ? val.count : 0,
+          isPro: Boolean(val.isPro),
+        });
+      }
+      return map;
+    }
+  } catch (e) {
+    console.error('Failed to load users.json, starting fresh:', e.message);
+  }
+  return new Map();
+}
+
+function saveUsers() {
+  ensureDataDir();
+  try {
+    const obj = {};
+    for (const [key, val] of users.entries()) {
+      obj[key] = {
+        date: val.date,
+        count: val.count,
+        isPro: val.isPro,
+      };
+    }
+    fs.writeFileSync(USERS_FILE, JSON.stringify(obj, null, 2), 'utf-8');
+  } catch (e) {
+    console.error('Failed to save users.json:', e.message);
+  }
+}
+
+const users = loadUsers();
+
+// Save users whenever a mutation happens — wrap the Map mutations
+const originalSet = users.set.bind(users);
+users.set = function(key, value) {
+  originalSet(key, value);
+  saveUsers();
+  return this;
+};
+
+// Also intercept delete if ever used
+const originalDelete = users.delete.bind(users);
+users.delete = function(key) {
+  const result = originalDelete(key);
+  saveUsers();
+  return result;
+};
 
 const execFileAsync = promisify(execFile);
 
@@ -71,6 +137,7 @@ function getUserUsage(userId) {
   } else if (user.date !== today && !user.isPro) {
     user.date = today;
     user.count = 0;
+    saveUsers();
   }
   return user;
 }
@@ -249,6 +316,7 @@ app.post('/api/compress', upload.single('file'), async (req, res) => {
     }
     if (!isPro) {
       usage.count += 1;
+      saveUsers();
     }
 
     const remaining = isPro ? null : Math.max(0, DAILY_LIMIT - usage.count);
@@ -342,6 +410,7 @@ app.post('/api/payment/verify', (req, res) => {
   if (expectedSignature === razorpay_signature) {
     const usage = getUserUsage(userId);
     usage.isPro = true;
+    saveUsers();
     res.json({ success: true, isPro: true });
   } else {
     res.status(400).json({ error: 'INVALID_SIGNATURE' });
@@ -375,6 +444,7 @@ app.post('/api/admin/grant-pro', (req, res) => {
 
   const usage = getUserUsage(userId);
   usage.isPro = true;
+  saveUsers();
   res.json({ success: true, isPro: true });
 });
 
