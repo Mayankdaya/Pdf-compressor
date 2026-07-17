@@ -1,80 +1,80 @@
 {
-  "totalRevenue": 67254.61,
-  "activeUsers": 14812,
-  "premiumSubscriptions": 1233,
+  "totalRevenue": 67283.11,
+  "activeUsers": 15016,
+  "premiumSubscriptions": 1251,
   "recentTransactions": [
     {
-      "id": "TXN-24566",
-      "date": "7/17/2026, 5:27:24 AM",
-      "amount": 0.99,
+      "id": "TXN-84960",
+      "date": "7/17/2026, 5:56:50 AM",
+      "amount": 0.49,
       "status": "Ad Revenue"
     },
     {
-      "id": "TXN-52322",
-      "date": "7/17/2026, 5:27:09 AM",
+      "id": "TXN-34317",
+      "date": "7/17/2026, 5:56:38 AM",
+      "amount": 0.33,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-70658",
+      "date": "7/17/2026, 5:56:28 AM",
+      "amount": 0.98,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-88402",
+      "date": "7/17/2026, 5:56:24 AM",
       "amount": 1,
       "status": "Subscription"
     },
     {
-      "id": "TXN-81821",
-      "date": "7/17/2026, 5:27:06 AM",
-      "amount": 0.89,
-      "status": "Ad Revenue"
-    },
-    {
-      "id": "TXN-72488",
-      "date": "7/17/2026, 5:26:57 AM",
+      "id": "TXN-51362",
+      "date": "7/17/2026, 5:52:11 AM",
       "amount": 1,
       "status": "Subscription"
-    },
-    {
-      "id": "TXN-42500",
-      "date": "7/17/2026, 5:25:10 AM",
-      "amount": 0.12,
-      "status": "Ad Revenue"
     }
   ],
-  "pagesGenerated": 88,
+  "pagesGenerated": 122,
   "aiLogs": [
     {
-      "time": "5:27:11 AM",
-      "message": "Offline AI Published: How to reduce pdf size for Mac",
-      "link": "/ai-pages/reduce-pdf-size-for-mac-2240.html"
+      "time": "5:57:01 AM",
+      "message": "Free AI Cloud Published: How to compress pdf free for Whatsapp",
+      "link": "/ai-pages/compress-pdf-free-for-whatsapp-7171.html"
     },
     {
-      "time": "5:27:09 AM",
-      "message": "Offline AI Published: How to shrink pdf for Mobile",
-      "link": "/ai-pages/shrink-pdf-for-mobile-4168.html"
+      "time": "5:56:50 AM",
+      "message": "Offline AI Published: How to compress pdf 100kb for Mobile",
+      "link": "/ai-pages/compress-pdf-100kb-for-mobile-4655.html"
     },
     {
-      "time": "5:26:57 AM",
+      "time": "5:56:47 AM",
+      "message": "Offline AI Published: How to small pdf for Freelancers",
+      "link": "/ai-pages/small-pdf-for-freelancers-4541.html"
+    },
+    {
+      "time": "5:56:41 AM",
       "message": "Offline AI Published: How to compress pdf free for Whatsapp",
-      "link": "/ai-pages/compress-pdf-free-for-whatsapp-7142.html"
+      "link": "/ai-pages/compress-pdf-free-for-whatsapp-6858.html"
     },
     {
-      "time": "5:26:26 AM",
-      "message": "Offline AI Published: How to reduce pdf size for Lawyers",
-      "link": "/ai-pages/reduce-pdf-size-for-lawyers-1001.html"
+      "time": "5:56:38 AM",
+      "message": "Offline AI Published: How to compress pdf free for Students",
+      "link": "/ai-pages/compress-pdf-free-for-students-5712.html"
     },
     {
-      "time": "5:25:14 AM",
-      "message": "Offline AI Published: How to shrink pdf for Mac",
-      "link": "/ai-pages/shrink-pdf-for-mac-5013.html"
+      "time": "5:56:34 AM",
+      "message": "Offline AI Published: How to pdf mb to kb for Mac",
+      "link": "/ai-pages/pdf-mb-to-kb-for-mac-5179.html"
     },
     {
-      "time": "5:25:10 AM",
-      "message": "Offline AI Published: How to small pdf for Mac",
-      "link": "/ai-pages/small-pdf-for-mac-3776.html"
+      "time": "5:56:28 AM",
+      "message": "Offline AI Published: How to compress pdf 100kb for Email",
+      "link": "/ai-pages/compress-pdf-100kb-for-email-415.html"
     },
     {
-      "time": "5:25:06 AM",
-      "message": "Offline AI Published: How to compress pdf free for Android",
-      "link": "/ai-pages/compress-pdf-free-for-android-4061.html"
-    },
-    {
-      "time": "5:24:59 AM",
-      "message": "Offline AI Published: How to small pdf for Windows",
-      "link": "/ai-pages/small-pdf-for-windows-110.html"
+      "time": "5:56:24 AM",
+      "message": "Offline AI Published: How to reduce pdf size for Students",
+      "link": "/ai-pages/reduce-pdf-size-for-students-7301.html"
     }
   ]
 }
