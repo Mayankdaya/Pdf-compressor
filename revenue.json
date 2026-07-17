@@ -1,80 +1,80 @@
 {
-  "totalRevenue": 67243.8,
-  "activeUsers": 14702,
-  "premiumSubscriptions": 1227,
+  "totalRevenue": 67254.61,
+  "activeUsers": 14812,
+  "premiumSubscriptions": 1233,
   "recentTransactions": [
     {
-      "id": "TXN-96637",
-      "date": "7/17/2026, 4:04:13 AM",
+      "id": "TXN-24566",
+      "date": "7/17/2026, 5:27:24 AM",
+      "amount": 0.99,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-52322",
+      "date": "7/17/2026, 5:27:09 AM",
       "amount": 1,
       "status": "Subscription"
     },
     {
-      "id": "TXN-90985",
-      "date": "7/17/2026, 4:03:21 AM",
-      "amount": 1.42,
+      "id": "TXN-81821",
+      "date": "7/17/2026, 5:27:06 AM",
+      "amount": 0.89,
       "status": "Ad Revenue"
     },
     {
-      "id": "TXN-75601",
-      "date": "7/17/2026, 4:03:16 AM",
-      "amount": 0.75,
-      "status": "Ad Revenue"
+      "id": "TXN-72488",
+      "date": "7/17/2026, 5:26:57 AM",
+      "amount": 1,
+      "status": "Subscription"
     },
     {
-      "id": "TXN-75984",
-      "date": "7/17/2026, 4:03:02 AM",
+      "id": "TXN-42500",
+      "date": "7/17/2026, 5:25:10 AM",
       "amount": 0.12,
-      "status": "Ad Revenue"
-    },
-    {
-      "id": "TXN-36773",
-      "date": "7/17/2026, 3:59:30 AM",
-      "amount": 0.26,
       "status": "Ad Revenue"
     }
   ],
-  "pagesGenerated": 76,
+  "pagesGenerated": 88,
   "aiLogs": [
     {
-      "time": "4:04:13 AM",
-      "message": "Offline AI Published: How to resize pdf for Students",
-      "link": "/ai-pages/resize-pdf-for-students-7797.html"
+      "time": "5:27:11 AM",
+      "message": "Offline AI Published: How to reduce pdf size for Mac",
+      "link": "/ai-pages/reduce-pdf-size-for-mac-2240.html"
     },
     {
-      "time": "4:03:26 AM",
-      "message": "Offline AI Published: How to pdf mb to kb for Lawyers",
-      "link": "/ai-pages/pdf-mb-to-kb-for-lawyers-5473.html"
+      "time": "5:27:09 AM",
+      "message": "Offline AI Published: How to shrink pdf for Mobile",
+      "link": "/ai-pages/shrink-pdf-for-mobile-4168.html"
     },
     {
-      "time": "4:03:06 AM",
-      "message": "Offline AI Published: How to pdf optimizer for Students",
-      "link": "/ai-pages/pdf-optimizer-for-students-1151.html"
-    },
-    {
-      "time": "4:03:02 AM",
-      "message": "Offline AI Published: How to pdf optimizer for Windows",
-      "link": "/ai-pages/pdf-optimizer-for-windows-7116.html"
-    },
-    {
-      "time": "3:59:37 AM",
-      "message": "Offline AI Published: How to pdf optimizer for Mac",
-      "link": "/ai-pages/pdf-optimizer-for-mac-312.html"
-    },
-    {
-      "time": "3:59:34 AM",
-      "message": "Offline AI Published: How to resize pdf for Mobile",
-      "link": "/ai-pages/resize-pdf-for-mobile-1393.html"
-    },
-    {
-      "time": "3:59:30 AM",
-      "message": "Offline AI Published: How to pdf optimizer for Whatsapp",
-      "link": "/ai-pages/pdf-optimizer-for-whatsapp-2834.html"
-    },
-    {
-      "time": "3:59:21 AM",
+      "time": "5:26:57 AM",
       "message": "Offline AI Published: How to compress pdf free for Whatsapp",
-      "link": "/ai-pages/compress-pdf-free-for-whatsapp-2981.html"
+      "link": "/ai-pages/compress-pdf-free-for-whatsapp-7142.html"
+    },
+    {
+      "time": "5:26:26 AM",
+      "message": "Offline AI Published: How to reduce pdf size for Lawyers",
+      "link": "/ai-pages/reduce-pdf-size-for-lawyers-1001.html"
+    },
+    {
+      "time": "5:25:14 AM",
+      "message": "Offline AI Published: How to shrink pdf for Mac",
+      "link": "/ai-pages/shrink-pdf-for-mac-5013.html"
+    },
+    {
+      "time": "5:25:10 AM",
+      "message": "Offline AI Published: How to small pdf for Mac",
+      "link": "/ai-pages/small-pdf-for-mac-3776.html"
+    },
+    {
+      "time": "5:25:06 AM",
+      "message": "Offline AI Published: How to compress pdf free for Android",
+      "link": "/ai-pages/compress-pdf-free-for-android-4061.html"
+    },
+    {
+      "time": "5:24:59 AM",
+      "message": "Offline AI Published: How to small pdf for Windows",
+      "link": "/ai-pages/small-pdf-for-windows-110.html"
     }
   ]
 }

@@ -42,8 +42,8 @@ const client = new Client({
 const chatHistory = [];
 
 client.on('ready', () => {
-  console.log(\`🚀 [SUCCESS] System Online! Logged in as \${client.user.tag}\`);
-  console.log(\`🤖 AI Brain Connected. J.A.R.V.I.S mode is active. Waiting for commands on Discord...\`);
+  console.log(`🚀 [SUCCESS] System Online! Logged in as ${client.user.tag}`);
+  console.log(`🤖 AI Brain Connected. J.A.R.V.I.S mode is active. Waiting for commands on Discord...`);
 });
 
 client.on('messageCreate', async (message) => {

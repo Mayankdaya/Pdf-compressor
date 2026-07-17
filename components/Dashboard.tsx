@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { DollarSign, Users, CreditCard, Activity, ArrowUpRight, FileText, Bot, ExternalLink } from 'lucide-react';
+import { DollarSign, Users, CreditCard, Activity, ArrowUpRight, FileText, Bot, ExternalLink, Send, Terminal } from 'lucide-react';
 
+// ... existing code ...
 const revenueData = [
   { name: 'Jan', revenue: 4000 },
   { name: 'Feb', revenue: 5000 },
@@ -31,6 +32,35 @@ const Dashboard: React.FC = () => {
     aiLogs: [] as {time: string, message: string, link: string}[],
     recentTransactions: [] as {id: string, date: string, amount: number, status: string}[]
   });
+
+  const [chatInput, setChatInput] = useState('');
+  const [chatMessages, setChatMessages] = useState<{role: 'user' | 'jarvis', text: string}[]>([
+    { role: 'jarvis', text: 'J.A.R.V.I.S. online. Hello Boss, saara automation system mere control mein hai. Aap aaram kijiye, main sab kuch sambhal lunga!' }
+  ]);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatMessages]);
+
+  const sendJarvisMessage = async () => {
+    if (!chatInput.trim()) return;
+    const userText = chatInput;
+    setChatInput('');
+    setChatMessages(prev => [...prev, { role: 'user', text: userText }]);
+
+    try {
+      const response = await fetch('/api/jarvis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userText })
+      });
+      const data = await response.json();
+      setChatMessages(prev => [...prev, { role: 'jarvis', text: data.reply }]);
+    } catch (err) {
+      setChatMessages(prev => [...prev, { role: 'jarvis', text: 'Connection lost with main brain, Boss.' }]);
+    }
+  };
 
   useEffect(() => {
     // Fetch live stats every 2 seconds
@@ -93,9 +123,51 @@ const Dashboard: React.FC = () => {
         })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        {/* JARVIS Chat Terminal */}
+        <div className="bg-slate-900 p-0 rounded-2xl border border-indigo-500/50 shadow-lg shadow-indigo-500/10 flex flex-col h-96 overflow-hidden">
+          <div className="bg-slate-800 px-4 py-3 border-b border-slate-700 flex items-center gap-2">
+            <Terminal className="w-5 h-5 text-indigo-400" />
+            <h3 className="text-sm font-bold text-slate-200">J.A.R.V.I.S. Command Center</h3>
+            <div className="ml-auto flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+            </div>
+          </div>
+          
+          <div className="flex-grow p-4 overflow-y-auto space-y-4 font-mono text-sm">
+            {chatMessages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[85%] p-3 rounded-lg ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-slate-800 text-emerald-400 border border-slate-700 rounded-bl-none'}`}>
+                  {msg.role === 'jarvis' && <span className="text-xs text-slate-500 block mb-1">JARVIS</span>}
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+            <div ref={chatEndRef} />
+          </div>
+
+          <div className="p-3 bg-slate-800 border-t border-slate-700">
+            <div className="flex items-center gap-2">
+              <input 
+                type="text" 
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && sendJarvisMessage()}
+                placeholder="Message JARVIS..."
+                className="flex-grow bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono text-sm focus:outline-none focus:border-indigo-500"
+              />
+              <button 
+                onClick={sendJarvisMessage}
+                className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* AI Action Logs */}
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-96">
           <div className="flex items-center gap-2 mb-6">
             <Bot className="w-6 h-6 text-indigo-500" />
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">Live AI Page Generation Log</h3>

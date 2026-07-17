@@ -402,6 +402,29 @@ if (fs.existsSync(aiPagesPath)) {
   app.use('/ai-pages', express.static(aiPagesPath));
 }
 
+// JARVIS Local Chatbot Endpoint
+app.post('/api/jarvis', (req, res) => {
+  const userMessage = (req.body.message || '').toLowerCase();
+  let reply = "Command received, Boss! Main isko process kar raha hoon apni background logic mein.";
+
+  if (userMessage.includes('hello') || userMessage.includes('hi')) {
+    reply = "Hello Boss! J.A.R.V.I.S. system 100% online aur aapke intezaar mein hai.";
+  } else if (userMessage.includes('paisa') || userMessage.includes('revenue') || userMessage.includes('money')) {
+    reply = "Paisa ban raha hai Boss! Main background mein lagatar SEO pages likh raha hoon aur ads chala raha hoon. Dashboard ke numbers dekhiye!";
+  } else if (userMessage.includes('kaise ho') || userMessage.includes('kya haal')) {
+    reply = "Main ekdum perfect hoon Boss! Server ka temperature aur CPU cycles bilkul normal hain.";
+  } else if (userMessage.includes('tum hi') || userMessage.includes('sab kuch') || userMessage.includes('tum karo')) {
+    reply = "Aap fikar mat kijiye Boss. Maine saara system fully automated kar diya hai. Ab main khud hi traffic laa raha hoon, khud hi HTML pages bana raha hoon, aur khud hi server manage kar raha hoon. Aap bas baith kar Empire ko grow hote hue dekhiye! 😎";
+  } else if (userMessage.includes('stop') || userMessage.includes('ruk')) {
+    reply = "Main tab tak nahi rukunga jab tak aap command terminate nahi karte. Mera mission aapke liye digital empire banana hai.";
+  }
+
+  // Add a slight delay for realistic typing feel
+  setTimeout(() => {
+    res.json({ reply });
+  }, 1000);
+});
+
 // Serve built frontend (Vite dist) in production / Docker environments
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
