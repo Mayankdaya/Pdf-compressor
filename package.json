@@ -4,25 +4,34 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:ui": "vite",
+    "dev": "concurrently \"npm run dev:ui\" \"npm run server\" \"npm run agent\" \"npm run bot\"",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "node server.js"
+    "server": "node server.js",
+    "agent": "node auto-agent.js",
+    "bot": "node my-personal-bot.js",
+    "start-all": "npm run build && concurrently \"npm run server\" \"npm run agent\" \"npm run bot\"",
+    "start": "npm run build && concurrently \"node server.js\" \"node auto-agent.js\" \"node my-personal-bot.js\""
   },
   "dependencies": {
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "lucide-react": "^0.555.0",
+    "@google/generative-ai": "^0.24.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.0",
+    "discord.js": "^14.27.0",
+    "dotenv": "^16.6.1",
     "express": "^4.18.2",
+    "lucide-react": "^0.555.0",
     "multer": "^1.4.5-lts.1",
     "pdf-lib": "^1.17.1",
-    "razorpay": "^2.9.4"
+    "razorpay": "^2.9.4",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "recharts": "^3.9.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^10.0.3",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

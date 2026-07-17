@@ -7,10 +7,12 @@ import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import Dashboard from './components/Dashboard';
 
 const App: React.FC = () => {
   // Initialize state from local storage or system preference if desired, default to false (light)
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentView, setCurrentView] = useState<'home' | 'dashboard'>('home');
 
   useEffect(() => {
     const html = document.documentElement;
@@ -27,14 +29,20 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col transition-colors duration-300">
-      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} currentView={currentView} setCurrentView={setCurrentView} />
       <main className="flex-grow">
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <Pricing />
-        <Testimonials />
-        <FAQ />
+        {currentView === 'home' ? (
+          <>
+            <Hero />
+            <Features />
+            <HowItWorks />
+            <Pricing />
+            <Testimonials />
+            <FAQ />
+          </>
+        ) : (
+          <Dashboard />
+        )}
       </main>
       <Footer />
     </div>

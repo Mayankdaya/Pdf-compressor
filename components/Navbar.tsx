@@ -5,9 +5,11 @@ import Button from './ui/Button';
 interface NavbarProps {
   isDarkMode: boolean;
   toggleTheme: () => void;
+  currentView: 'home' | 'dashboard';
+  setCurrentView: (view: 'home' | 'dashboard') => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
+const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme, currentView, setCurrentView }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleScroll = (e: React.MouseEvent<HTMLElement>, id: string) => {
@@ -45,9 +47,17 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" onClick={(e) => handleScroll(e, 'features')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Features</a>
-            <a href="#how-it-works" onClick={(e) => handleScroll(e, 'how-it-works')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">How it works</a>
-            <a href="#pricing" onClick={(e) => handleScroll(e, 'pricing')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Pricing</a>
+            <button onClick={() => setCurrentView('home')} className={`text-sm font-medium ${currentView === 'home' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'} hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors`}>Home</button>
+            <button onClick={() => setCurrentView('dashboard')} className={`text-sm font-medium ${currentView === 'dashboard' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'} hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center gap-1`}>
+              Dashboard
+            </button>
+            {currentView === 'home' && (
+              <>
+                <a href="#features" onClick={(e) => handleScroll(e, 'features')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Features</a>
+                <a href="#how-it-works" onClick={(e) => handleScroll(e, 'how-it-works')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">How it works</a>
+                <a href="#pricing" onClick={(e) => handleScroll(e, 'pricing')} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Pricing</a>
+              </>
+            )}
             
             <button 
               onClick={toggleTheme}
@@ -82,9 +92,16 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 animate-in slide-in-from-top-5">
           <div className="px-4 pt-2 pb-6 space-y-2">
-            <a href="#features" onClick={(e) => handleScroll(e, 'features')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">Features</a>
-            <a href="#how-it-works" onClick={(e) => handleScroll(e, 'how-it-works')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">How it works</a>
-            <a href="#pricing" onClick={(e) => handleScroll(e, 'pricing')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">Pricing</a>
+            <button onClick={() => { setCurrentView('home'); setIsOpen(false); }} className={`w-full text-left px-3 py-2 text-base font-medium ${currentView === 'home' ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400'} rounded-md`}>Home</button>
+            <button onClick={() => { setCurrentView('dashboard'); setIsOpen(false); }} className={`w-full text-left px-3 py-2 text-base font-medium ${currentView === 'dashboard' ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400'} rounded-md`}>Dashboard</button>
+            
+            {currentView === 'home' && (
+              <>
+                <a href="#features" onClick={(e) => handleScroll(e, 'features')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">Features</a>
+                <a href="#how-it-works" onClick={(e) => handleScroll(e, 'how-it-works')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">How it works</a>
+                <a href="#pricing" onClick={(e) => handleScroll(e, 'pricing')} className="block px-3 py-2 text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-md">Pricing</a>
+              </>
+            )}
             <div className="pt-4">
               <Button fullWidth onClick={(e) => handleScroll(e, 'pricing')}>Get Lifetime Access – $1</Button>
             </div>

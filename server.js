@@ -378,6 +378,30 @@ app.post('/api/admin/grant-pro', (req, res) => {
   res.json({ success: true, isPro: true });
 });
 
+// Admin Dashboard stats endpoint
+app.get('/api/stats', (req, res) => {
+  const revenueFile = path.join(__dirname, 'revenue.json');
+  if (fs.existsSync(revenueFile)) {
+    const data = JSON.parse(fs.readFileSync(revenueFile, 'utf8'));
+    res.json(data);
+  } else {
+    res.json({
+      totalRevenue: 67200,
+      activeUsers: 14350,
+      premiumSubscriptions: 1204,
+      pagesGenerated: 0,
+      aiLogs: [],
+      recentTransactions: []
+    });
+  }
+});
+
+// Serve the AI-generated web pages
+const aiPagesPath = path.join(__dirname, 'ai-generated-pages');
+if (fs.existsSync(aiPagesPath)) {
+  app.use('/ai-pages', express.static(aiPagesPath));
+}
+
 // Serve built frontend (Vite dist) in production / Docker environments
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {

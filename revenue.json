@@ -1,0 +1,80 @@
+{
+  "totalRevenue": 67243.8,
+  "activeUsers": 14702,
+  "premiumSubscriptions": 1227,
+  "recentTransactions": [
+    {
+      "id": "TXN-96637",
+      "date": "7/17/2026, 4:04:13 AM",
+      "amount": 1,
+      "status": "Subscription"
+    },
+    {
+      "id": "TXN-90985",
+      "date": "7/17/2026, 4:03:21 AM",
+      "amount": 1.42,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-75601",
+      "date": "7/17/2026, 4:03:16 AM",
+      "amount": 0.75,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-75984",
+      "date": "7/17/2026, 4:03:02 AM",
+      "amount": 0.12,
+      "status": "Ad Revenue"
+    },
+    {
+      "id": "TXN-36773",
+      "date": "7/17/2026, 3:59:30 AM",
+      "amount": 0.26,
+      "status": "Ad Revenue"
+    }
+  ],
+  "pagesGenerated": 76,
+  "aiLogs": [
+    {
+      "time": "4:04:13 AM",
+      "message": "Offline AI Published: How to resize pdf for Students",
+      "link": "/ai-pages/resize-pdf-for-students-7797.html"
+    },
+    {
+      "time": "4:03:26 AM",
+      "message": "Offline AI Published: How to pdf mb to kb for Lawyers",
+      "link": "/ai-pages/pdf-mb-to-kb-for-lawyers-5473.html"
+    },
+    {
+      "time": "4:03:06 AM",
+      "message": "Offline AI Published: How to pdf optimizer for Students",
+      "link": "/ai-pages/pdf-optimizer-for-students-1151.html"
+    },
+    {
+      "time": "4:03:02 AM",
+      "message": "Offline AI Published: How to pdf optimizer for Windows",
+      "link": "/ai-pages/pdf-optimizer-for-windows-7116.html"
+    },
+    {
+      "time": "3:59:37 AM",
+      "message": "Offline AI Published: How to pdf optimizer for Mac",
+      "link": "/ai-pages/pdf-optimizer-for-mac-312.html"
+    },
+    {
+      "time": "3:59:34 AM",
+      "message": "Offline AI Published: How to resize pdf for Mobile",
+      "link": "/ai-pages/resize-pdf-for-mobile-1393.html"
+    },
+    {
+      "time": "3:59:30 AM",
+      "message": "Offline AI Published: How to pdf optimizer for Whatsapp",
+      "link": "/ai-pages/pdf-optimizer-for-whatsapp-2834.html"
+    },
+    {
+      "time": "3:59:21 AM",
+      "message": "Offline AI Published: How to compress pdf free for Whatsapp",
+      "link": "/ai-pages/compress-pdf-free-for-whatsapp-2981.html"
+    }
+  ]
+}
